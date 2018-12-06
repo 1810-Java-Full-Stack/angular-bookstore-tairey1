@@ -2,6 +2,22 @@
 <br>
 <a href="/list">List View</a>
 
+<div *ngIf="this.Book">
 <h1>{{this.Book.title}}</h1>
-<h3>by: {{this.Book.author}}</h3>
+<h3>by: {{this.Book.author.name}}</h3>
 <h4>{{this.Book.description}}</h4>
+</div>
+
+<div *ngIf="this.Author">
+    <h1>{{this.Author.name}}</h1>
+    <h3>Biography: {{this.Author.bio}}</h3>
+</div>
+
+<br>
+<div *ngIf="this.Book">
+<input type="text" id="bookTitle" [(ngModel)]="editedBookTitle">
+<button (click)="updateTitle()">Update Title</button>
+</div>
+
+<input type="text" id="authorName" [(ngModel)]="editedAuthorName">
+<button (click)="updateAuthor()">Update Author</button>

@@ -1,7 +1,9 @@
+import { Author } from './author';
+
 export class Book{
     id: string;
     title: string;
-    author: string;
+    author: Author;
     description: string;
 
     constructor(id,title,author,description){
