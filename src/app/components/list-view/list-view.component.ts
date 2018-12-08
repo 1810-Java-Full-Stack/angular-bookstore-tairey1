@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GetBooksService } from 'src/app/services/get-books.service';
+import { Book } from 'src/app/models/book';
 
 @Component({
   selector: 'app-list-view',
@@ -9,9 +10,12 @@ import { GetBooksService } from 'src/app/services/get-books.service';
 export class ListViewComponent implements OnInit {
 
   public books = [];
+  public total_pages: number;
+  public current_page: number;
+  public tempBooks = [];
 
   constructor(
-    private GetBookService: GetBooksService
+    private bookService: GetBooksService
   ) { }
 
   ngOnInit() {
@@ -19,7 +23,14 @@ export class ListViewComponent implements OnInit {
   }
 
   getBooks() {
-    this.books = this.GetBookService.getBooks();
+    this.bookService.getBooks().subscribe(
+      (book) =>  {
+        this.books = book;
+        /*this.current_page = 1;
+        for (let i = 0; i < 3; i++) {
+          this.books.push(book[i]);
+        }*/
+      });
   }
 
 }

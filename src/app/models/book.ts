@@ -1,7 +1,7 @@
 import { Author } from './author';
 
 export class Book{
-    id: string;
+    id: number;
     title: string;
     author: Author;
     description: string;

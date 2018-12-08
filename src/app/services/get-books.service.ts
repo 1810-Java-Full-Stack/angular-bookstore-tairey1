@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http'
 import { Book } from 'src/app/models/book';
 import { Author } from 'src/app/models/author';
 
@@ -12,25 +13,19 @@ export class GetBooksService {
   authors: Author[] = [];
   Author: Author;
 
-  constructor() {
-    this.authors.push(new Author("4","J.K. Rowling","Wrote Harry Potter"));
-    this.authors.push(new Author("5","Mark Zusak","Chill guy"));
-    this.authors.push(new Author("6","Saints","Died a long time ago"));
-    this.books.push(new Book("1","Harry Potter and Philosopher's Stone",this.authors.find((a)=>a.name=="J.K. Rowling"),"1st Harry Potter"));
-    this.books.push(new Book("2","The Book Thief",this.authors.find((a)=>a.name=="Mark Zusak"),"Holocaust Book"));
-    this.books.push(new Book("3","The Bible",this.authors.find((a)=>a.name=="Saints"),"The Roman Catholic Bible"));
+  constructor(private http: HttpClient) {
   }
 
   getBooks() {
-    return this.books;
+    return this.http.get<Book[]>("http://ec2-18-212-70-179.compute-1.amazonaws.com:8080/Bookstore-MVC/book/");
   }
 
   getById(id: string) {
-    return this.books.find((b)=>b.id===id);
+    return this.http.get<Book>("http://ec2-18-212-70-179.compute-1.amazonaws.com:8080/Bookstore-MVC/book/"+id);
   }
 
   getByAId(id: string) {
-    return this.authors.find((a)=>a.id===id);
+    return this.http.get<Author>("http://ec2-18-212-70-179.compute-1.amazonaws.com:8080/Bookstore-MVC/author/"+id);
   }
 
 }
