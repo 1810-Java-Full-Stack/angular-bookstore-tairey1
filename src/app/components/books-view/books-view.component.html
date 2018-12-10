@@ -1,0 +1,16 @@
+<a routerLink="/main">Go Back Home</a>
+<br>
+<a routerLink="/list">List View</a>
+<div *ngIf="this.Book">
+    <h1>{{this.Book.title}}</h1>
+    <h3>by: {{this.Book.author.name}}</h3>
+    <h4>{{this.Book.description}}</h4>
+</div>
+<br>
+<div *ngIf="this.Book">
+<input type="text" id="bookTitle" [(ngModel)]="editedBookTitle">
+<button (click)="updateTitle()">Update Title</button>
+<br>
+<input type="text" id="authorName" [(ngModel)]="editedAuthorName">
+<button (click)="updateBookAuthor()">Update Author</button>
+</div>
